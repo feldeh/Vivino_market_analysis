@@ -1,8 +1,13 @@
 vivino_env
 # Byte-compiled / optimized / DLL files
 __pycache__/
+*_pycache_/
+*_pycache_*
 *.py[cod]
 *$py.class
+
+#DS
+.DS_Store
 
 # C extensions
 *.so
