@@ -1,0 +1,17 @@
+name,vintage_rating_avg,sum(vintages.ratings_count)
+Grèce,4.6,62
+France,4.556,402781
+États-Unis,4.552,102030
+Australie,4.53,3723
+Italie,4.523,465884
+Allemagne,4.522,780
+Espagne,4.519,48689
+Moldavie,4.517,4172
+Portugal,4.515,5487
+Roumanie,4.5,31
+Afrique du Sud,4.5,5558
+Argentine,4.481,16930
+Chili,4.478,14066
+Hongrie,4.44,2981
+Suisse,4.4,162
+Croatie,4.4,234

@@ -1,0 +1,18 @@
+name,wine_rating_avg,sum(wines.ratings_count)
+Israël,4.5,894
+Allemagne,4.5,8257
+États-Unis,4.491,834263
+Moldavie,4.48,14114
+Hongrie,4.473,30564
+Afrique du Sud,4.459,59995
+Australie,4.458,52138
+France,4.447,2124809
+Espagne,4.444,746710
+Portugal,4.436,62454
+Chili,4.431,159256
+Italie,4.43,2135839
+Argentine,4.417,283673
+Roumanie,4.4,166
+Grèce,4.4,610
+Suisse,4.35,1047
+Croatie,4.3,292
