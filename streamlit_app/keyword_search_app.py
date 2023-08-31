@@ -39,8 +39,7 @@ def fetch_wines(selected_keywords):
         WHERE
             keyword_count > 10
         GROUP BY wine_name
-        HAVING {keyword_conditions}
-        LIMIT 20;
+        HAVING {keyword_conditions};
     """
     cursor.execute(query)
     return cursor.fetchall()
