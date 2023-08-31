@@ -12,16 +12,27 @@ st.set_page_config(page_title="Vivino Analysis", page_icon=":wine_glass:", layou
 
 st.header('_Quality Wines on a Budget:_ Our Top 10 Recommendations', divider='rainbow')
 
-m = folium.Map(location=[df.latitude.mean(), df.longitude.mean()], 
-                 zoom_start=3, control_scale=True, tiles='cartodbpositron')
-for i,row in df.iterrows():
-    iframe = folium.IFrame('<b>Wine:</b> ' + str(row["wines"]) + 
+m = folium.Map(location=[df.latitude.mean(), df.longitude.mean()],
+               zoom_start=3, control_scale=True, tiles='cartodbpositron')
+for i, row in df.iterrows():
+    # Setup the content of the popup
+    iframe = folium.IFrame('<b>Wine:</b> ' + str(row["wines"]) +
                            '<br/> <b>Price:</b> €' + str(row["price"]) +
                            '<br/> <b>Score:</b> ' + str(row["score"]) +
-                           '<br/> <b>City:</b> ' + str(row["cities"]) + ' '+ str(row["country_iso"]))
+                           '<br/> <b>City:</b> ' + str(row["cities"]) + ' ' + str(row["country_iso"]))
     popup = folium.Popup(iframe, min_width=200, max_width=200)
-    folium.Marker(location=[row['latitude'],row['longitude']],
-                  popup = popup).add_to(m)
+    folium.Marker(location=[row['latitude'], row['longitude']],
+                  popup=popup).add_to(m)
 
 st_data = st_folium(m, width=1250)
 
+# Close the database connection
+conn.close()
+
+
+options = st.multiselect(
+    'What are your favorite colors',
+    ['Green', 'Yellow', 'Red', 'Blue'],
+    ['Yellow', 'Red'])
+
+# st.write('You selected:', options)
