@@ -65,10 +65,6 @@ def main():
         for result in results:
             st.write("**Wine name:**", result[0])
             st.write("Keyword count:", result[1])
-            st.write("Primary keywords:", result[2])
-            st.write("All keywords:", result[3])
-            st.write("Group name:", result[4])
-            st.write("Keyword type:", result[5])
             st.write("---")
 
 
