@@ -5,8 +5,8 @@ from pathlib import Path
 import folium
 from streamlit_folium import st_folium, folium_static
 
- 
-df = pd.read_csv("./data/csv_streamlit/top_10_filtered.csv")
+csv_path = Path.cwd() / "data" / "csv_streamlit" / "top_10_filtered.csv"
+df = pd.read_csv(csv_path)
 
 st.set_page_config(page_title="Vivino Analysis", page_icon=":wine_glass:", layout="wide")
 
@@ -25,4 +25,3 @@ for i, row in df.iterrows():
                   popup=popup).add_to(m)
 
 st_data = st_folium(m, width=1250)
-
