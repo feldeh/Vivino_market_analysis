@@ -13,7 +13,7 @@ def fetch_primary_keywords():
         SELECT DISTINCT keywords.name
         FROM keywords_wine
         JOIN keywords ON keywords.id = keywords_wine.keyword_id
-        WHERE keyword_type = 'primary'
+        WHERE keyword_type = 'primary' AND keywords_wine.count > 10
     """
     cursor.execute(all_primary_keywords_query)
     result = cursor.fetchall()
@@ -39,8 +39,7 @@ def fetch_wines(selected_keywords):
         WHERE
             keyword_count > 10
         GROUP BY wine_name
-        HAVING {keyword_conditions}
-        LIMIT 20;
+        HAVING {keyword_conditions};
     """
     cursor.execute(query)
     return cursor.fetchall()
