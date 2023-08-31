@@ -3,6 +3,8 @@ import pandas as pd
 from streamlit_agraph import agraph, Node, Edge, Config
 import json
 from pathlib import Path
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 
 st.title("Exploring the Finest: 3 Top Grape Varieties and Their 5 Best Wines")
@@ -38,7 +40,7 @@ for data in dict_converted:
     edges.append(Edge(source=wines_names, target=type_grape))
 
 
-config = Config(width=1000,
+config = Config(width=750,
                 height=950,
                 directed=True,
                 physics=True,
@@ -52,3 +54,26 @@ config = Config(width=1000,
 return_value = agraph(nodes=nodes,
                       edges=edges,
                       config=config)
+
+
+data = df.sort_values(by=['grape', 'rank'])
+
+
+def plot_bar_chart(data):
+    plt.figure(figsize=(10, 6))
+
+    for grape, group in data.groupby('grape'):
+        plt.bar(group['rank'], group['wines_names'], label=grape, alpha=0.7)
+
+    plt.xlabel('Rank')
+    plt.ylabel('Wine Names')
+    plt.title('Wine Rankings by Grape')
+    plt.xticks(data['rank'])
+    plt.legend()
+    plt.tight_layout()
+
+    return plt
+
+
+st.title('Wine Rankings Visualization')
+st.pyplot(plot_bar_chart(data))

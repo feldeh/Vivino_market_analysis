@@ -1,9 +1,8 @@
 import streamlit as st
 import pandas as pd
-import sqlite3
 from pathlib import Path
 import folium
-from streamlit_folium import st_folium, folium_static
+from streamlit_folium import st_folium
 
 csv_path = Path.cwd() / "data" / "csv_streamlit" / "top_10_filtered.csv"
 df = pd.read_csv(csv_path)
