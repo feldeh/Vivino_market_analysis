@@ -52,8 +52,3 @@ config = Config(width=1000,
 return_value = agraph(nodes=nodes,
                       edges=edges,
                       config=config)
-
-
-cabernet_result_path = Path.cwd() / "data" / "csv_streamlit" / "cabernet_result.csv"
-df_cabernet = pd.read_csv(cabernet_result_path)
-st.bar_chart(df_cabernet)
