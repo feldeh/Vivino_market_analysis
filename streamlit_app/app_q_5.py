@@ -1,7 +1,11 @@
 import streamlit as st
-import pandas as pd
 from streamlit_agraph import agraph, Node, Edge, Config
 import json
+import numpy as np
+import pandas as pd
+from matplotlib import pyplot as plt
+import matplotlib.ticker as ticker
+import seaborn as sns
 
 st.title("Exploring the Finest: 3 Top Grape Varieties and Their 5 Best Wines")
 
@@ -52,5 +56,22 @@ return_value = agraph(nodes=nodes,
                       config=config)
 
 
-df_cabernet = pd.read_csv("/Users/andre/Documents/GitHub/Vivino_market_analysis/data/csv_streamlit/cabernet_result.csv")
-st.bar_chart(df_cabernet)
+
+data = df.sort_values(by=['grape', 'rank'])
+def plot_bar_chart(data):
+    plt.figure(figsize=(10, 6)) 
+    
+    for grape, group in data.groupby('grape'):
+        plt.bar(group['rank'], group['wines_names'], label=grape, alpha=0.7)
+
+    plt.xlabel('Rank')
+    plt.ylabel('Wine Names')
+    plt.title('Wine Rankings by Grape')
+    plt.xticks(data['rank'])
+    plt.legend()
+    plt.tight_layout()
+
+    return plt
+
+st.title('Wine Rankings Visualization')
+st.pyplot(plot_bar_chart(data))
