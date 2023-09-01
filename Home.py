@@ -7,7 +7,29 @@ def run():
         page_icon="🍷",
     )
 
-    st.write("# Vivino Market Analysis 📊")
+    st.markdown(
+        """
+
+        ## Vivino :wine_glass:
+
+        ---
+
+        #### A wine market analysis by:
+
+        - **Felicien de Hertogh**
+        - **Andreia Azevedo Heringer Negreira**
+        - **George Hollingdale**
+
+        ---
+
+        As Junior Data Engineers/Analysts, we've been tasked by Vivino to analyse their database.
+
+        We have come up with some useful statistics to help them with their marketing strategies, and to provide deeper knowledge of their products and users.
+
+        Our findings are covered in this application.
+
+        """
+    )
 
 
 if __name__ == "__main__":
