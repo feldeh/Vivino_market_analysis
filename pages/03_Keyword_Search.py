@@ -28,16 +28,14 @@ def fetch_wines(selected_keywords):
     # append SUM of keyword count for each selected keyword
     keyword_counts = ", ".join([f"SUM(CASE WHEN keywords.name = '{keyword}' THEN keywords_wine.count ELSE 0 END) AS {keyword}_count" for keyword in selected_keywords])
     # append each selected keywords keyword count to ORDER BY clause
-    order_by_conditions = ", ".join([f"{keyword}_count DESC" for keyword in selected_keywords])
+    order_by_keyword = ", ".join([f"{keyword}_count DESC" for keyword in selected_keywords])
 
     query = f"""
         SELECT
             wines.name AS wine_name,
             {keyword_counts},
-            keywords.name AS keyword_name,
             group_concat(CASE WHEN keywords_wine.keyword_type = 'primary' THEN keywords.name ELSE NULL END) AS keyword_list,
-            keywords_wine.group_name,
-            keywords_wine.keyword_type
+            keywords_wine.group_name
         FROM wines
         JOIN keywords_wine ON keywords_wine.wine_id = wines.id
         JOIN keywords ON keywords.id = keywords_wine.keyword_id
@@ -45,7 +43,7 @@ def fetch_wines(selected_keywords):
             keywords_wine.count > 10
         GROUP BY wine_name
         HAVING {keyword_conditions}
-        ORDER BY {order_by_conditions};
+        ORDER BY {order_by_keyword};
     """
     cursor.execute(query)
     return cursor.fetchall()
