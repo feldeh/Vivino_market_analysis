@@ -7,6 +7,8 @@ st.markdown(
     .block-container {
       max-width: 100%;
     }
+
+    .css-ocqkz7 
 </style>
 """,
     unsafe_allow_html=True,

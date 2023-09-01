@@ -7,6 +7,21 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import sqlite3
 
+st.markdown(
+    """
+<style>
+    .css-ocqkz7 {
+        margin-bottom: 100px;
+        margin-top: 100px;
+    }
+    .css-10trblm  {
+        text-align: center;
+    }
+</style>
+""",
+    unsafe_allow_html=True,
+)
+
 
 db_path = Path.cwd() / 'data' / 'db' / 'vivino.db'
 conn = sqlite3.connect(db_path)
@@ -48,6 +63,8 @@ with col1:
     plt.xticks(rotation=45, ha='right')
     st.pyplot(fig)
 
+
+st.markdown("#### Top 3 grapes by and their best wines")
 
 grape_wine_path = Path.cwd() / "data" / "csv_streamlit" / "grape_wine.csv"
 df = pd.read_csv(grape_wine_path)
